@@ -12,7 +12,7 @@ public class PlayerDetector : MonoBehaviour
         {
             if (loot is EnemyBullet enemyBullet)
             {
-                //_health.TakeDamage(enemyBullet.Damage);
+                _health.TakeDamage(enemyBullet.Damage);
                 enemyBullet.gameObject.SetActive(false);
             }
             else if (loot is Medkit medkit)

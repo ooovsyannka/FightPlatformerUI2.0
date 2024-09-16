@@ -1,4 +1,2 @@
-﻿using UnityEngine;
-
-public class PlayerHealth : Health
+﻿public class PlayerHealth : Health
 {}
