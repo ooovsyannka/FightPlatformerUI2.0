@@ -4,12 +4,10 @@
 
 public class Medkit : Loot
 {
-    [SerializeField] private int _maxCountToRecovery = 4;
+    [field: SerializeField] public int CountToRecovery { get; private set; }
 
     public override TypeLoot GetTypeLoot()
     {
         return TypeLoot.Medkit;
     }
-
-    public int CountToRecovery { get { return _maxCountToRecovery; } }
 }

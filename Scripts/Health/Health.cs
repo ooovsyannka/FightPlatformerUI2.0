@@ -3,9 +3,8 @@ using UnityEngine;
 
 public abstract class Health : MonoBehaviour
 {
-    [SerializeField] private int _maxValue;
-
-    public int MaxValue { get { return _maxValue; } }
+    [field:SerializeField] public int MaxValue { get; private set; }
+    
     protected float CurrentValue { get; private set; }
 
     public event Action Died;
@@ -19,7 +18,7 @@ public abstract class Health : MonoBehaviour
         if (damage < 0)
             damage *= -1;
 
-        CurrentValue = Math.Clamp(CurrentValue - damage, 0, _maxValue);
+        CurrentValue = Math.Clamp(CurrentValue - damage, 0, MaxValue);
 
         ValueChanged?.Invoke(CurrentValue);
 
@@ -31,13 +30,13 @@ public abstract class Health : MonoBehaviour
 
     public void Regenerate(float desiredCount)
     {
-        if ((CurrentValue + desiredCount) < _maxValue)
+        if ((CurrentValue + desiredCount) < MaxValue)
         {
             CurrentValue += desiredCount;
         }
         else
         {
-            CurrentValue = _maxValue;
+            CurrentValue = MaxValue;
         }
 
         ValueChanged?.Invoke(CurrentValue);

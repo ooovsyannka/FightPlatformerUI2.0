@@ -39,7 +39,9 @@ public class Spawner : MonoBehaviour
             enemy.transform.position = GetRandomSpaner().position;
 
             if (CanBetrayLoot())
+            {
                 enemy.GetLoot(BetrayLoot());
+            }
 
             enemy.gameObject.SetActive(true);
         }

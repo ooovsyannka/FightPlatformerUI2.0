@@ -6,7 +6,7 @@ public class PlayerAmmunition : Ammunition
     {
         if (collision.TryGetComponent(out AmmunitionLoot ammunitionLoot))
         {
-            ReplenishmentBulletsCount(ammunitionLoot.AmunitionCount);
+            ReplenishmentBulletsCount(ammunitionLoot.CountToRecovery);
             ammunitionLoot.gameObject.SetActive(false); 
         }
     }

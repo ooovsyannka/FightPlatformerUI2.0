@@ -6,8 +6,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
-    [SerializeField] private PlayerCombat _playerCombat;
-    [SerializeField] private PlayerAnimation _playerAnimation;
+    [SerializeField] private PlayerCombat _combat;
+    [SerializeField] private PlayerAnimation _animation;
     [SerializeField] private Transform _startPosition;
     [SerializeField] private Sounds _sound;
     [SerializeField] private float _respawnDelay;
@@ -17,16 +17,16 @@ public class Player : MonoBehaviour
 
     private State _state;
     private Coroutine _respawnDelayCoroutine;
-    private PlayerMover _playerMover;
-    private PlayerHealth _playerHealth;
-    private PlayerAmmunition _playerAmmunition;
+    private PlayerMover _mover;
+    private PlayerHealth _health;
+    private PlayerAmmunition _ammunition;
     private CapsuleCollider2D _collider;
 
     private void Awake()
     {
-        _playerHealth = GetComponent<PlayerHealth>();
-        _playerAmmunition = GetComponent<PlayerAmmunition>();
-        _playerMover = GetComponent<PlayerMover>();
+        _health = GetComponent<PlayerHealth>();
+        _ammunition = GetComponent<PlayerAmmunition>();
+        _mover = GetComponent<PlayerMover>();
         _collider = GetComponent<CapsuleCollider2D>();
         transform.position = _startPosition.position;
     }
@@ -34,8 +34,8 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         _state = State.AnyState;
-        _playerHealth.Died += Die;
-        _playerHealth.Regenerate(_playerHealth.MaxValue);
+        _health.Died += Die;
+        _health.Regenerate(_health.MaxValue);
     }
 
     private void Update()
@@ -44,27 +44,27 @@ public class Player : MonoBehaviour
         {
             if (_inputReader.IsShoot)
             {
-                _playerCombat.Attack();
+                _combat.Attack();
             }
 
             if (_inputReader.IsReload)
             {
-                _playerCombat.Reload();
+                _combat.Reload();
             }
 
-            _playerCombat.LookAtTarget(_inputReader.MousePosition);
+            _combat.LookAtTarget(_inputReader.MousePosition);
             _isMove = _inputReader.HorizontalInput != 0 || _inputReader.VerticalInput != 0;
         }
 
         _sound.PlaySound(_state);
-        _playerAnimation.PlayAnimation(_isMove, _isDie, _playerMover.IsDash);
+        _animation.PlayAnimation(_isMove, _isDie, _mover.IsDash);
     }
 
     private void FixedUpdate()
     {
         if (_isDie == false)
         {
-            _playerMover.Move(_inputReader.HorizontalInput, _inputReader.VerticalInput);
+            _mover.Move(_inputReader.HorizontalInput, _inputReader.VerticalInput);
 
             if (_isMove)
             {
@@ -72,10 +72,10 @@ public class Player : MonoBehaviour
 
                 if (_inputReader.IsDash)
                 {
-                    _playerMover.Dash(_inputReader.HorizontalInput, _inputReader.VerticalInput);
+                    _mover.Dash(_inputReader.HorizontalInput, _inputReader.VerticalInput);
                 }
 
-                if (_playerMover.IsDash)
+                if (_mover.IsDash)
                 {
                     _state = State.Dash;
                 }
@@ -104,9 +104,9 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(_respawnDelay);
 
-        _playerHealth.Regenerate(_playerHealth.MaxValue);
+        _health.Regenerate(_health.MaxValue);
         transform.position = _startPosition.position;
-        _playerAmmunition.ReplenishmentBulletsCount();
+        _ammunition.ReplenishmentBulletsCount();
         _collider.enabled = true;
 
         _isDie = false;

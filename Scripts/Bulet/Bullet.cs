@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(CircleCollider2D), typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 
-public abstract class Bullet : MonoBehaviour
+public abstract class Bullet : Loot
 {
     [SerializeField] private int _force;
-    [SerializeField] private int _damage;
     [SerializeField] private int _critDamage;
 
-    private float _timer = 3;
+    private float _timer = 1;
     private Rigidbody2D _rigidbody;
     private Transform _direction;
     private Transform _parent;
+
+    [field: SerializeField] public int Damage { get; private set; }
 
     private void Awake()
     {
@@ -40,7 +41,7 @@ public abstract class Bullet : MonoBehaviour
             return _critDamage;
         }
 
-        return _damage;
+        return Damage;
     }
 
     public void SetDirection(Transform direction) => _direction = direction;

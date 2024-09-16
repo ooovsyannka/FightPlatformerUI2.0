@@ -4,9 +4,7 @@
 
 public class AmmunitionLoot : Loot
 {
-    [SerializeField] private int _maxAmunitionCount = 15;
-
-    public int AmunitionCount { get {  return _maxAmunitionCount; } }
+    [field: SerializeField] public int CountToRecovery { get; private set; }
 
     public override TypeLoot GetTypeLoot()
     {

@@ -7,8 +7,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private VolumeByDistance _volumeByDistance;
-    [SerializeField] private EnemyCombat _enemyCombat;
-    [SerializeField] private EnemyAnimation _enemyAnimation;
+    [SerializeField] private EnemyCombat _combat;
+    [SerializeField] private EnemyAnimation _animation;
     [SerializeField] private Sounds _sounds;
 
     private float _timeDieDelay = 1.5f;
@@ -16,15 +16,15 @@ public class Enemy : MonoBehaviour
     private bool _isDie = false;
     private EnemyMover _enemyMover;
     private EnemyHealth _enemyHealth;
-    public Loot _loot;
-    private CapsuleCollider2D _enemyCollider;
-    private EnemyPool _enemyPool;
+    private Loot _loot;
+    private CapsuleCollider2D _collider;
+    private EnemyPool _pool;
 
     private void Awake()
     {
         _enemyMover = GetComponent<EnemyMover>();
         _enemyHealth = GetComponent<EnemyHealth>();
-        _enemyCollider = transform.GetComponent<CapsuleCollider2D>();
+        _collider = transform.GetComponent<CapsuleCollider2D>();
     }
 
     private void OnEnable()
@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
         StartCoroutine(RecovyreDelay());
         _isDie = false;
         _enemyHealth.Died += Die;
-        _enemyCollider.enabled = true;
+        _collider.enabled = true;
     }
 
     private void OnDisable()
@@ -44,28 +44,28 @@ public class Enemy : MonoBehaviour
     {
         if (_isDie == false)
         {
-            bool isCombat = _enemyCombat.IsCombat;
+            bool isCombat = _combat.IsCombat;
 
             if (isCombat)
             {
-                _enemyMover.SetTarget(_enemyCombat.Player.transform.position);
-                _enemyCombat.TryAttackPlayer();
+                _enemyMover.SetTarget(_combat.Player.transform.position);
+                _combat.TryAttackPlayer();
             }
 
             _enemyMover.SetCombateState(isCombat);
         }
 
-        _volumeByDistance.SetVolumeValue(_enemyCombat.Player);
+        _volumeByDistance.SetVolumeValue(_combat.Player);
         _sounds.PlaySound(_enemyMover.EnemyState);
-        _enemyAnimation.PlayAnimation(_enemyMover.IsMove, _isDie);
+        _animation.PlayAnimation(_enemyMover.IsMove, _isDie);
     }
-
-    public void GetLoot(Loot loot) => _loot = loot;
 
     public void GetEnemyPool(EnemyPool enemyPool)
     {
-        _enemyPool = enemyPool;
+        _pool = enemyPool;
     }
+
+    public void GetLoot(Loot loot) => _loot = loot;
 
     private void Die()
     {
@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(_timeDieDelay);
 
-        _enemyPool.ReturnEnemyInPool(this);
+        _pool.ReturnEnemyInPool(this);
         DropLoot();
         gameObject.SetActive(false);
     }

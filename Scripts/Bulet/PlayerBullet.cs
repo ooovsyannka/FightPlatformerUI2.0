@@ -1,11 +1,7 @@
 ﻿public class PlayerBullet : Bullet 
 {
-    private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
+    public override TypeLoot GetTypeLoot()
     {
-        if (collision.TryGetComponent(out EnemyHealth enemyHealth))
-        {
-            enemyHealth.TakeDamage(ChanceCrit());
-            gameObject.SetActive(false);
-        }
+        return TypeLoot.Bullet;
     }
 }

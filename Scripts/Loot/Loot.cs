@@ -1,4 +1,4 @@
-﻿using TMPro.EditorUtilities;
+﻿using System.Threading;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]

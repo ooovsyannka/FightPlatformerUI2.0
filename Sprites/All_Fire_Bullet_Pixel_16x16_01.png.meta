@@ -106,6 +106,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -113,10 +126,10 @@ TextureImporter:
       name: All_Fire_Bullet_Pixel_16x16_01_0
       rect:
         serializedVersion: 2
-        x: 263
-        y: 129
-        width: 32
-        height: 13
+        x: 274
+        y: 130
+        width: 11
+        height: 11
       alignment: 9
       pivot: {x: 0.51, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -126,69 +139,6 @@ TextureImporter:
       bones: []
       spriteID: cf618c1cc09cb1f41b00744f6bdb9bb1
       internalID: -551648117
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: All_Fire_Bullet_Pixel_16x16_01_1
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 129
-        width: 32
-        height: 13
-      alignment: 9
-      pivot: {x: 0.75, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ba0856eb030c1294dbd551da3c007216
-      internalID: -1161173739
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: All_Fire_Bullet_Pixel_16x16_01_2
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 129
-        width: 32
-        height: 13
-      alignment: 9
-      pivot: {x: 0.7, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b4709713685cfe347a33fb4cc595a1f7
-      internalID: -314915658
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: All_Fire_Bullet_Pixel_16x16_01_3
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 129
-        width: 32
-        height: 13
-      alignment: 9
-      pivot: {x: 0.75, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5824febf6b3287a41b8d21c9c6fcbc86
-      internalID: 1798811934
       vertices: []
       indices: 
       edges: []

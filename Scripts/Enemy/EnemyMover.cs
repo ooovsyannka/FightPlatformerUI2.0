@@ -9,6 +9,7 @@ public class EnemyMover : MonoBehaviour
     [SerializeField] private float _idleTime;
     [SerializeField] private float _speedMove;
     [SerializeField] private float _distanceToPlayer;
+    
 
     private float _minDistanceToTarget = 0.3f;
     private float _currentDistance;
