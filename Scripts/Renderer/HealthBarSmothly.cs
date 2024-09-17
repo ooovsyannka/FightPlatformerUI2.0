@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class HealthBarRenderer : MonoBehaviour
 {
     [SerializeField] private Health _health;
-    [SerializeField] private Canvas _canvas;
+    [SerializeField] private RectTransform _rectTransform;
 
     private float _smoothlyValue = 100;
     private Slider _bar;
@@ -20,7 +20,7 @@ public class HealthBarRenderer : MonoBehaviour
 
     private void LateUpdate()
     {
-        _canvas.GetComponent<RectTransform>().rotation = Quaternion.Euler(Vector3.zero);
+        _rectTransform.rotation = Quaternion.Euler(Vector3.zero);
     }
 
     private void OnEnable()

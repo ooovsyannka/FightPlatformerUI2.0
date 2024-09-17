@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 4736068220575053882}
-  _canvas: {fileID: 5500741897107941225}
+  _rectTransform: {fileID: 2623375772357302447}
 --- !u!1 &3026234764224289668
 GameObject:
   m_ObjectHideFlags: 0

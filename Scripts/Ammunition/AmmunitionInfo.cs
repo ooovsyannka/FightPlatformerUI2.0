@@ -6,9 +6,14 @@ public class AmmunitionInfo : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _ammunitionText;
     [SerializeField] private Ammunition _ammunition;
 
-    private void Update()
+    private void OnEnable()
     {
-        ShowAmmunitionCount();
+        _ammunition.ValueChanged += ShowAmmunitionCount;    
+    }
+
+    private void OnDisable()
+    {
+        _ammunition.ValueChanged -= ShowAmmunitionCount;       
     }
 
     private void ShowAmmunitionCount() =>

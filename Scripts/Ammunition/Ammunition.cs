@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Ammunition : MonoBehaviour
@@ -11,6 +12,8 @@ public abstract class Ammunition : MonoBehaviour
 
     public int CurrentBulletCountInClip { get; private set; }
     public int CurrentAllBulletCount { get; private set; }
+
+    public event Action ValueChanged;
 
     private void Awake()
     {
@@ -40,6 +43,8 @@ public abstract class Ammunition : MonoBehaviour
             CurrentBulletCountInClip = CurrentAllBulletCount;
             CurrentAllBulletCount = 0;
         }
+
+        ValueChanged?.Invoke();
 
         return true;
     }
@@ -73,6 +78,7 @@ public abstract class Ammunition : MonoBehaviour
             _poolBullets.Enqueue(bullet);
             CurrentBulletCountInClip--;
             bullet.transform.parent = null;
+            ValueChanged?.Invoke();
 
             return true;
         }
